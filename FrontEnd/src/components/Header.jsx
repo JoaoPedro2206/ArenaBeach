@@ -29,7 +29,17 @@ const Header = () => {
           <NavLink to="/videos" className={getNavLinkClass}>
             Meus Vídeos
           </NavLink>
-          <div className="header-profile-icon"></div>
+          <NavLink to="/perfil" className={getNavLinkClass}>
+            Perfil
+          </NavLink>
+          <NavLink
+            to="/perfil"
+            className={({ isActive }) =>
+              `header-profile-link ${isActive ? 'active-profile' : ''}`
+            }
+          >
+            <div className="header-profile-icon"></div>
+          </NavLink>
         </nav>
 
         <div className="header-mobile-profile header-profile-icon"></div>
