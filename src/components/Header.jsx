@@ -31,8 +31,7 @@ const Header = () => {
           </NavLink>
           <div className="header-profile-icon"></div>
         </nav>
-        
-        {/* Mobile Profile */}
+
         <div className="header-mobile-profile header-profile-icon"></div>
       </div>
     </header>
