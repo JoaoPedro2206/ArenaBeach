@@ -1,11 +1,17 @@
 import { useState } from 'react'; // Precisamos do useState
-import TimeSlot from './TimeSlot';
+import TimeSlot from '../TimeSlot/TimeSlot';
+import './TimeSlotGrid.css';
 
 // --- NOSSOS NOVOS DADOS ---
 // Movi os dados para fora do componente e criei duas listas
 // (Note que mudei alguns status da "Descoberta" para ficar diferente)
 
 const cobertaSlots = [
+  { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
+  { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
+  { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
+  { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
+  { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
   { time: '05:00 - 06:00', price: 'R$ 80,00', status: 'available' },
   { time: '06:00 - 07:00', price: 'R$ 80,00', status: 'available' },
   { time: '07:00 - 08:00', price: 'R$ 80,00', status: 'available' },
@@ -21,10 +27,16 @@ const cobertaSlots = [
   { time: '19:00 - 20:00', price: 'R$ 90,00', status: 'available' },
   { time: '20:00 - 21:00', price: 'R$ 90,00', status: 'available' },
   { time: '21:00 - 22:00', price: 'R$ 90,00', status: 'available' },
-  { time: '22:00 - 23:00', price: 'R$ 90,00', status: 'available' }
+  { time: '22:00 - 23:00', price: 'R$ 90,00', status: 'available' },
+  { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
 ];
 
 const descobertaSlots = [
+  { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
+  { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
+  { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
+  { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
+  { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
   { time: '05:00 - 06:00', price: 'R$ 70,00', status: 'available' },
   { time: '06:00 - 07:00', price: 'R$ 70,00', status: 'available' },
   { time: '07:00 - 08:00', price: 'R$ 70,00', status: 'reserved' },
@@ -40,7 +52,8 @@ const descobertaSlots = [
   { time: '19:00 - 20:00', price: 'R$ 80,00', status: 'available' },
   { time: '20:00 - 21:00', price: 'R$ 80,00', status: 'available' },
   { time: '21:00 - 22:00', price: 'R$ 80,00', status: 'available' },
-  { time: '22:00 - 23:00', price: 'R$ 80,00', status: 'available' }
+  { time: '22:00 - 23:00', price: 'R$ 80,00', status: 'available' },
+  { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
 ];
 
 

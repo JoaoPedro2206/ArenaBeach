@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import './BottomTabBar.css';
 
 const BottomTabBar = () => {
   const tabs = [
     { id: 'inicio', icon: '🏠', label: 'Início', path: '/inicio' },
     { id: 'agendamento', icon: '📅', label: 'Agendar', path: '/agendamento' },
     { id: 'aulas', icon: '🎾', label: 'Aulas', path: '/aulas' },
-    { id: 'videos', icon: '🎬', label: 'Vídeos', path: '/videos' },
     { id: 'perfil', icon: '👤', label: 'Perfil', path: '/perfil' }
   ];
 

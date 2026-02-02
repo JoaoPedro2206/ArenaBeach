@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './BookingModal.css';
 
 // ATUALIZAÇÃO 1: Adicione 'selectedCourt' às props
 const BookingModal = ({ isOpen, onClose, selectedTime, selectedPrice, selectedCourt, onConfirm }) => {

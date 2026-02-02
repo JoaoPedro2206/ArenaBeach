@@ -1,0 +1,49 @@
+/* --- Estilos da Barra de Navegação Inferior (BottomTabBar.jsx) --- */
+.bottom-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    padding: 12px 0; /* Remove o padding horizontal */
+    box-shadow: 0 -12px 30px -22px rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-radius: 0px 0px 0 0;
+}
+
+.bottom-tab-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 768px;
+    margin: 0 auto; /* Mantém a centralização */
+    padding: 0 24px; /* Adiciona o padding horizontal aqui */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+.tab-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    color: #4b5563; /* text-gray-600 */
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.tab-link.active-tab-link {
+    color: #0284c7; /* text-sky-600 */
+}
+
+.tab-link-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+.tab-link-label {
+    font-size: 12px;
+}
+.tab-link-label.active-tab-label {
+    font-weight: 500;
+}

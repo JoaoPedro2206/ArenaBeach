@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import './Inicio.css';
 
 const Inicio = () => {
   const navigate = useNavigate();

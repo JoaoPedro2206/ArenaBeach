@@ -1,0 +1,270 @@
+:root {
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #e0f2fe;
+  --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+
+/* --- Container Principal --- */
+.agendamento-container {
+  max-width: 900px; /* Um pouco mais largo para desktop */
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100vh;
+  /* Opcional: Adicionar um background sutil na página pai para o glass funcionar melhor */
+}
+
+/* --- Seção do Carrossel de Datas (Sticky) --- */
+.date-carousel-section {
+  background-color: var(--glass-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  
+  /* Melhora de UX: Fixar no topo ao rolar */
+  position: sticky;
+  top: 16px; 
+  z-index: 50;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.date-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px; /* Espaço para o focus ring e shadow */
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.date-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.date-item {
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
+  min-width: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  cursor: pointer;
+  user-select: none;
+}
+
+.date-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px -4px rgba(14, 165, 233, 0.15);
+  border-color: var(--primary);
+}
+
+.date-item.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 8px 16px -4px rgba(14, 165, 233, 0.4);
+  transform: scale(1.05);
+}
+
+.date-item-day {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+.date-item-date {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.date-item-month {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Cores quando selecionado */
+.date-item.selected .date-item-day,
+.date-item.selected .date-item-date,
+.date-item.selected .date-item-month {
+  color: white;
+}
+
+/* --- Seção da Grade de Horários --- */
+.timeslot-section {
+  background-color: var(--glass-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Abas de Quadra (Design estilo "Segmented Control") */
+.court-tabs {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 24px;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  position: relative;
+}
+
+.court-tab-btn {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.court-tab-btn.active {
+  background-color: white;
+  color: var(--primary-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Grade de Horários */
+.timeslot-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  gap: 16px;
+}
+
+/* Tablet e Desktop: 2 colunas */
+@media (min-width: 640px) {
+  .timeslot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.timeslot {
+  width: 100%;
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeslot-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Estilo unificado para os indicadores */
+.timeslot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.5); /* Efeito de anel */
+}
+
+.timeslot-time {
+  font-weight: 700;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums; /* Alinha números */
+}
+
+.timeslot-price {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+}
+
+/* --- Estados dos Slots --- */
+
+/* Disponível */
+.timeslot-available {
+  border-color: transparent;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 0 0 1px #e2e8f0;
+}
+.timeslot-available:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 20px -6px rgba(14, 165, 233, 0.25);
+}
+.timeslot-available:active {
+  transform: scale(0.98);
+}
+.timeslot-available .timeslot-indicator { background-color: #10b981; box-shadow: 0 0 0 3px #d1fae5; }
+.timeslot-available .timeslot-time { color: var(--text-main); }
+.timeslot-available .timeslot-price { color: var(--primary-dark); background-color: var(--primary-light); }
+
+/* Reservado */
+.timeslot-reserved {
+  background-color: #f8fafc;
+  border-style: dashed;
+  opacity: 0.6;
+}
+.timeslot-reserved .timeslot-indicator { background-color: #cbd5e1; box-shadow: none; }
+.timeslot-reserved .timeslot-time { color: #94a3b8; text-decoration: line-through; }
+.timeslot-reserved .timeslot-price { display: none; } /* Oculta preço se reservado */
+
+/* Aula/Bloqueado */
+.timeslot-class {
+  background: linear-gradient(to right, #fffbeb, #fff);
+  border-color: #fde68a;
+}
+.timeslot-class .timeslot-indicator { background-color: #f59e0b; box-shadow: 0 0 0 3px #fef3c7; }
+.timeslot-class .timeslot-time { color: #92400e; }
+.timeslot-class .timeslot-price { color: #b45309; background-color: #fff7ed; }
+
+/* Minha Reserva */
+.timeslot-my-booking {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #7dd3fc;
+}
+.timeslot-my-booking .timeslot-indicator { background-color: #0284c7; }
+.timeslot-my-booking .timeslot-time { color: #0369a1; }

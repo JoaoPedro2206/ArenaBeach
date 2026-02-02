@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'; 
+import './DateCarousel.css';
 
 const generateDates = () => {
   const dates = [];

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header';
-import BottomTabBar from './components/BottomTabBar';
-import BookingModal from './components/BookingModal';
-import CheckoutModal from './components/CheckoutModal';
+import Header from './components/Header/Header';
+import BottomTabBar from './components/BottomTabBar/BottomTabBar';
+import BookingModal from './components/BookingModel/BookingModal';
+import CheckoutModal from './components/CheckoutModal/CheckoutModal';
 
 export default function Layout() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);

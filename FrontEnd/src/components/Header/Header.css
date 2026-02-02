@@ -1,0 +1,182 @@
+:root {
+  --header-height: 72px;
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --border-subtle: rgba(226, 232, 240, 0.8);
+}
+
+/* --- Container Principal --- */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  max-width: 1200px; /* Largura máxima do conteúdo */
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Logo --- */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.header-logo-image {
+  height: 42px;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.header-brand:hover .header-logo-image {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.header-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: none; /* Mobile first: oculto em telas muito pequenas */
+}
+
+@media (min-width: 480px) {
+  .header-logo-text { display: block; }
+}
+
+/* --- Navegação Desktop --- */
+.header-desktop-nav {
+  display: none;
+}
+
+/* --- Perfil (Botão Pill Style) --- */
+.profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 6px 6px 6px 16px; /* Padding maior na esquerda para o texto */
+  border-radius: 99px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilo do texto "Perfil" */
+.profile-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+/* Estilo do Ícone/Avatar */
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #e2e8f0;
+  transition: all 0.2s;
+}
+
+/* Ícone SVG dentro do avatar */
+.profile-avatar svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+/* --- Hover & Active States --- */
+.profile-pill:hover {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.profile-pill:hover .profile-avatar {
+  color: var(--primary);
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--primary-dark);
+}
+
+.profile-pill.active-profile {
+  background-color: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.profile-pill.active-profile .profile-name {
+  color: var(--primary-dark);
+}
+
+.profile-pill.active-profile .profile-avatar {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 6px rgba(14, 165, 233, 0.3);
+}
+
+/* --- Mobile --- */
+.header-mobile-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+.header-mobile-profile .profile-avatar {
+    width: 40px;
+    height: 40px;
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+}
+.header-mobile-profile.active-profile .profile-avatar {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 768px) {
+  .header-desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .header-mobile-profile {
+    display: none;
+  }
+}

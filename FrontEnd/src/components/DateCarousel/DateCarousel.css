@@ -1,0 +1,64 @@
+/* --- Estilos do DateCarousel (DateCarousel.jsx) --- */
+.date-carousel-container {
+    margin-bottom: 24px;
+}
+
+.date-carousel-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.date-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.date-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.date-item {
+    flex-shrink: 0;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    min-width: 70px;
+    transition: all 0.3s;
+    background-color: white;
+    border: 1px solid #e5e7eb; /* border-gray-200 */
+    cursor: pointer;
+}
+.date-item:hover {
+    border-color: #7dd3fc; /* hover:border-sky-300 */
+}
+.date-item.selected {
+    border: 2px solid #0ea5e9; /* border-sky-500 */
+}
+
+.date-item-day {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    color: #6b7280; /* text-gray-500 */
+}
+.date-item-date {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    color: #111827; /* text-gray-900 */
+}
+.date-item-month {
+    font-size: 12px;
+    text-align: center;
+    color: #6b7280; /* text-gray-500 */
+}
+/* Estilos para item selecionado */
+.date-item.selected .date-item-day,
+.date-item.selected .date-item-date,
+.date-item.selected .date-item-month {
+    color: #0284c7; /* text-sky-600 */
+}

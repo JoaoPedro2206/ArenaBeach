@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './CheckoutModal.css';
 
 const CheckoutModal = ({ isOpen, onClose }) => {
   const [paymentMethod, setPaymentMethod] = useState('pix');

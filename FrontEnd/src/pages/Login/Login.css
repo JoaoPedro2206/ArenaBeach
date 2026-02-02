@@ -1,0 +1,109 @@
+/* --- Estilos de Autenticação (Mobile-First) --- */
+.auth-page {
+    min-height: 100vh;
+    width: 100%;
+    /* Removido o padding para o card ocupar a tela toda se necessário */
+    background: linear-gradient(150deg, #ffd74a 0%, #1ab7c7 55%, #0f172a 100%);
+}
+
+.auth-card-grid {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: transparent; /* Fundo do grid é transparente */
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* --- Seção Superior (Aside - Mobile) --- */
+.auth-aside {
+    display: flex; /* Alterado de 'none' para 'flex' */
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo */
+    gap: 24px;
+    padding: 48px 24px 32px; /* Padding para espaçamento */
+    background: linear-gradient(160deg, rgba(15, 23, 42, 0.95) 0%, rgba(26, 183, 199, 0.92) 100%);
+    color: #ffffff;
+}
+
+.auth-brand-container { text-align: center; }
+.auth-brand-logo { max-width: 180px; margin: 0 auto 16px; }
+.auth-aside-title { font-size: 24px; font-weight: 700; margin: 0 0 8px; }
+.auth-aside-text { font-size: 15px; color: rgba(255, 255, 255, 0.8); margin: 0 auto; max-width: 320px; }
+.auth-aside-list { list-style: none; padding: 0; margin: 0 auto; display: grid; gap: 16px; max-width: 320px; }
+.auth-aside-list li { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 12px; }
+.auth-list-icon { flex-shrink: 0; width: 20px; height: 20px; color: #ffd74a; }
+.auth-list-text { font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+
+
+/* --- Seção Inferior (Formulário - Mobile) --- */
+.auth-card {
+    padding: 32px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    background-color: #ffffff; /* Fundo branco para o formulário */
+}
+
+.auth-heading { text-align: center; }
+.auth-title { margin: 0; font-size: 24px; font-weight: 700; color: #1e293b; }
+.auth-subtitle { margin: 8px 0 0; font-size: 15px; color: #64748b; }
+.auth-form { display: grid; gap: 18px; }
+.auth-label { display: grid; gap: 8px; font-size: 14px; font-weight: 500; color: #334155; }
+.auth-input { width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; padding: 12px 16px; font-size: 16px; background-color: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box; }
+.auth-input::placeholder { color: #94a3b8; }
+.auth-input:focus { outline: none; border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2); }
+.auth-button { width: 100%; border: none; border-radius: 10px; padding: 14px; font-size: 16px; font-weight: 600; background-color: #0284c7; color: #ffffff; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
+.auth-button:hover { background-color: #0369a1; transform: translateY(-2px); }
+.auth-button:active { transform: translateY(0); }
+.auth-footer { font-size: 14px; text-align: center; color: #475569; }
+.auth-link { color: #0284c7; font-weight: 600; text-decoration: none; }
+.auth-link:hover { text-decoration: underline; }
+
+/* --- Responsividade para Tablet e Desktop --- */
+@media (min-width: 768px) {
+    .auth-page {
+        padding: 16px; /* Adiciona padding de volta para telas maiores */
+    }
+
+    .auth-card-grid {
+        width: 100%;
+        min-height: auto;
+        max-width: 980px;
+        grid-template-columns: 400px 1fr; /* Duas colunas */
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .auth-aside {
+        padding: 48px 32px;
+        justify-content: space-between; /* Alinhamento original */
+        gap: 40px;
+    }
+
+    .auth-aside-list li {
+        background: none;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .auth-card {
+        padding: 48px;
+        gap: 32px;
+    }
+
+    .auth-heading { text-align: left; }
+    .auth-title { font-size: 28px; }
+    .auth-subtitle { font-size: 16px; }
+    .auth-form { gap: 20px; }
+    .auth-footer { text-align: left; }
+}
+
+/* Telas maiores */
+@media (min-width: 1024px) {
+    .auth-aside { padding: 64px 48px; }
+    .auth-card { padding: 64px; }
+    .auth-title { font-size: 32px; }
+}

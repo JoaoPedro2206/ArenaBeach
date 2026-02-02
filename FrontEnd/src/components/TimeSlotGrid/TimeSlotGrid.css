@@ -1,0 +1,27 @@
+/* --- Estilos das Abas de Quadra (TimeSlotGrid.jsx) --- */
+.court-tabs {
+    display: flex;
+    margin-bottom: 24px;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    border-radius: 8px;
+    padding: 4px;
+}
+.court-tab-btn {
+    flex: 1;
+    padding: 10px 16px; /* Um pouco mais de altura */
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.court-tab-btn.active {
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    color: #0284c7; /* text-sky-600 */
+}
+.court-tab-btn:not(.active) {
+    color: #4b5563; /* text-gray-600 */
+}

@@ -1,3 +1,5 @@
+import './TimeSlot.css';
+
 const TimeSlot = ({ time, price, status, onBook }) => {
   
   // Mapeia o status para a classe CSS
