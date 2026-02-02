@@ -1,63 +1,65 @@
-import { useState } from 'react'; // Precisamos do useState
+import { useState, useMemo } from 'react';
 import TimeSlot from '../TimeSlot/TimeSlot';
 import './TimeSlotGrid.css';
 
-// --- NOSSOS NOVOS DADOS ---
-// Movi os dados para fora do componente e criei duas listas
-// (Note que mudei alguns status da "Descoberta" para ficar diferente)
+const TimeSlotGrid = ({ selectedDate, onBookSlot }) => {
+  const courts = useMemo(() => ['Quadra 1', 'Quadra 2'], []);
+  const [activeCourt, setActiveCourt] = useState(courts[0]);
 
-const cobertaSlots = [
-  { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
-  { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
-  { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
-  { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
-  { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
-  { time: '05:00 - 06:00', price: 'R$ 80,00', status: 'available' },
-  { time: '06:00 - 07:00', price: 'R$ 80,00', status: 'available' },
-  { time: '07:00 - 08:00', price: 'R$ 80,00', status: 'available' },
-  { time: '08:00 - 09:00', price: 'R$ 80,00', status: 'available' },
-  { time: '09:00 - 10:00', price: 'R$ 80,00', status: 'reserved' },
-  { time: '10:00 - 11:00', price: 'R$ 80,00', status: 'class' },
-  { time: '11:00 - 12:00', price: 'R$ 80,00', status: 'available' },
-  { time: '14:00 - 15:00', price: 'R$ 90,00', status: 'my-booking' },
-  { time: '15:00 - 16:00', price: 'R$ 90,00', status: 'available' },
-  { time: '16:00 - 17:00', price: 'R$ 90,00', status: 'available' },
-  { time: '17:00 - 18:00', price: 'R$ 90,00', status: 'available' },
-  { time: '18:00 - 19:00', price: 'R$ 90,00', status: 'available' },
-  { time: '19:00 - 20:00', price: 'R$ 90,00', status: 'available' },
-  { time: '20:00 - 21:00', price: 'R$ 90,00', status: 'available' },
-  { time: '21:00 - 22:00', price: 'R$ 90,00', status: 'available' },
-  { time: '22:00 - 23:00', price: 'R$ 90,00', status: 'available' },
-  { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
-];
+  // --- NOSSOS NOVOS DADOS ---
+  // Movi os dados para fora do componente e criei duas listas
+  // (Note que mudei alguns status da "Descoberta" para ficar diferente)
 
-const descobertaSlots = [
-  { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
-  { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
-  { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
-  { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
-  { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
-  { time: '05:00 - 06:00', price: 'R$ 70,00', status: 'available' },
-  { time: '06:00 - 07:00', price: 'R$ 70,00', status: 'available' },
-  { time: '07:00 - 08:00', price: 'R$ 70,00', status: 'reserved' },
-  { time: '08:00 - 09:00', price: 'R$ 70,00', status: 'available' },
-  { time: '09:00 - 10:00', price: 'R$ 70,00', status: 'available' },
-  { time: '10:00 - 11:00', price: 'R$ 70,00', status: 'class' },
-  { time: '11:00 - 12:00', price: 'R$ 70,00', status: 'reserved' },
-  { time: '14:00 - 15:00', price: 'R$ 80,00', status: 'available' },
-  { time: '15:00 - 16:00', price: 'R$ 80,00', status: 'available' },
-  { time: '16:00 - 17:00', price: 'R$ 80,00', status: 'my-booking' },
-  { time: '17:00 - 18:00', price: 'R$ 80,00', status: 'available' },
-  { time: '18:00 - 19:00', price: 'R$ 80,00', status: 'reserved' },
-  { time: '19:00 - 20:00', price: 'R$ 80,00', status: 'available' },
-  { time: '20:00 - 21:00', price: 'R$ 80,00', status: 'available' },
-  { time: '21:00 - 22:00', price: 'R$ 80,00', status: 'available' },
-  { time: '22:00 - 23:00', price: 'R$ 80,00', status: 'available' },
-  { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
-];
+  const cobertaSlots = [
+    { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
+    { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
+    { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
+    { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
+    { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
+    { time: '05:00 - 06:00', price: 'R$ 80,00', status: 'available' },
+    { time: '06:00 - 07:00', price: 'R$ 80,00', status: 'available' },
+    { time: '07:00 - 08:00', price: 'R$ 80,00', status: 'available' },
+    { time: '08:00 - 09:00', price: 'R$ 80,00', status: 'available' },
+    { time: '09:00 - 10:00', price: 'R$ 80,00', status: 'reserved' },
+    { time: '10:00 - 11:00', price: 'R$ 80,00', status: 'class' },
+    { time: '11:00 - 12:00', price: 'R$ 80,00', status: 'available' },
+    { time: '14:00 - 15:00', price: 'R$ 90,00', status: 'my-booking' },
+    { time: '15:00 - 16:00', price: 'R$ 90,00', status: 'available' },
+    { time: '16:00 - 17:00', price: 'R$ 90,00', status: 'available' },
+    { time: '17:00 - 18:00', price: 'R$ 90,00', status: 'available' },
+    { time: '18:00 - 19:00', price: 'R$ 90,00', status: 'available' },
+    { time: '19:00 - 20:00', price: 'R$ 90,00', status: 'available' },
+    { time: '20:00 - 21:00', price: 'R$ 90,00', status: 'available' },
+    { time: '21:00 - 22:00', price: 'R$ 90,00', status: 'available' },
+    { time: '22:00 - 23:00', price: 'R$ 90,00', status: 'available' },
+    { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
+  ];
 
+  const descobertaSlots = [
+    { time: '00:00 - 01:00', price: 'R$ 80,00', status: 'available' },
+    { time: '01:00 - 02:00', price: 'R$ 80,00', status: 'available' },
+    { time: '02:00 - 03:00', price: 'R$ 80,00', status: 'available' },
+    { time: '03:00 - 04:00', price: 'R$ 80,00', status: 'available' },
+    { time: '04:00 - 05:00', price: 'R$ 80,00', status: 'available' },
+    { time: '05:00 - 06:00', price: 'R$ 70,00', status: 'available' },
+    { time: '06:00 - 07:00', price: 'R$ 70,00', status: 'available' },
+    { time: '07:00 - 08:00', price: 'R$ 70,00', status: 'reserved' },
+    { time: '08:00 - 09:00', price: 'R$ 70,00', status: 'available' },
+    { time: '09:00 - 10:00', price: 'R$ 70,00', status: 'available' },
+    { time: '10:00 - 11:00', price: 'R$ 70,00', status: 'class' },
+    { time: '11:00 - 12:00', price: 'R$ 70,00', status: 'reserved' },
+    { time: '14:00 - 15:00', price: 'R$ 80,00', status: 'available' },
+    { time: '15:00 - 16:00', price: 'R$ 80,00', status: 'available' },
+    { time: '16:00 - 17:00', price: 'R$ 80,00', status: 'my-booking' },
+    { time: '17:00 - 18:00', price: 'R$ 80,00', status: 'available' },
+    { time: '18:00 - 19:00', price: 'R$ 80,00', status: 'reserved' },
+    { time: '19:00 - 20:00', price: 'R$ 80,00', status: 'available' },
+    { time: '20:00 - 21:00', price: 'R$ 80,00', status: 'available' },
+    { time: '21:00 - 22:00', price: 'R$ 80,00', status: 'available' },
+    { time: '22:00 - 23:00', price: 'R$ 80,00', status: 'available' },
+    { time: '23:00 - 00:00', price: 'R$ 90,00', status: 'available' }
+  ];
 
-const TimeSlotGrid = ({ onBookSlot }) => {
   // 1. Estado para controlar a aba selecionada ('coberta' ou 'descoberta')
   const [selectedCourt, setSelectedCourt] = useState('coberta');
 
@@ -67,25 +69,21 @@ const TimeSlotGrid = ({ onBookSlot }) => {
 
   return (
     <div className="timeslot-grid-container">
-      
-      {/* 3. Abas para selecionar a quadra */}
-      <h3 className="timeslot-grid-title">Selecione a quadra</h3>
+      {/* Container das abas de quadra */}
       <div className="court-tabs">
-        <button
-          className={`court-tab-btn ${selectedCourt === 'coberta' ? 'active' : ''}`}
-          onClick={() => setSelectedCourt('coberta')}
-        >
-          Quadra Coberta
-        </button>
-        <button
-          className={`court-tab-btn ${selectedCourt === 'descoberta' ? 'active' : ''}`}
-          onClick={() => setSelectedCourt('descoberta')}
-        >
-          Quadra Descoberta
-        </button>
+        {/* ADICIONADO: Elemento para o fundo deslizante */}
+        <div className="court-tab-glider" style={{ transform: `translateX(${courts.indexOf(activeCourt) * 100}%)` }}></div>
+        {courts.map((court) => (
+          <button
+            key={court}
+            className={`court-tab-btn ${activeCourt === court ? 'active' : ''}`}
+            onClick={() => setActiveCourt(court)}
+          >
+            {court}
+          </button>
+        ))}
       </div>
 
-      <h3 className="timeslot-grid-title">Horários disponíveis</h3>
       <div className="timeslot-grid">
         {slotsToDisplay.map((slot) => (
           <TimeSlot

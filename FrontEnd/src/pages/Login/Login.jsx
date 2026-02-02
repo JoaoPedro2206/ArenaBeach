@@ -28,6 +28,7 @@ const Login = () => {
   return (
     <div className="auth-page">
       <div className="auth-card-grid">
+        {/* Coluna da Esquerda (Visível apenas no Desktop) */}
         <aside className="auth-aside">
           <div className="auth-brand-container">
             <img src={logoImg} alt="Arena Beach" className="auth-brand-logo" />
@@ -48,8 +49,11 @@ const Login = () => {
           </ul>
         </aside>
 
+        {/* Coluna da Direita (Formulário) */}
         <main className="auth-card">
           <header className="auth-heading">
+            {/* Logo visível apenas no Mobile */}
+            <img src={logoImg} alt="Arena Beach" className="auth-brand-logo-mobile" />
             <h2 className="auth-title">Acesse sua conta</h2>
             <p className="auth-subtitle">Bem-vindo de volta! Por favor, insira seus dados.</p>
           </header>

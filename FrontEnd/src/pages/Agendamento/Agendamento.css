@@ -15,15 +15,31 @@
 
 /* --- Container Principal --- */
 .agendamento-container {
-  max-width: 900px; /* Um pouco mais largo para desktop */
+  max-width: 900px;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 24px 20px 80px; /* Aumenta padding inferior */
   display: flex;
   flex-direction: column;
   gap: 24px;
   min-height: 100vh;
-  /* Opcional: Adicionar um background sutil na página pai para o glass funcionar melhor */
 }
+
+/* --- Cabeçalho da Página --- */
+.agendamento-header {
+  padding: 0 8px;
+}
+.agendamento-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+.agendamento-subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 4px 0 0 0;
+}
+
 
 /* --- Seção do Carrossel de Datas (Sticky) --- */
 .date-carousel-section {
@@ -34,12 +50,16 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-md);
-  
-  /* Melhora de UX: Fixar no topo ao rolar */
   position: sticky;
   top: 16px; 
   z-index: 50;
+  transition: box-shadow 0.3s ease; /* Transição suave para a sombra */
 }
+/* Adiciona uma sombra mais forte quando o carrossel está "flutuando" */
+.date-carousel-section:has(+ .timeslot-section) {
+    box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.2);
+}
+
 
 .section-header {
   display: flex;
@@ -54,10 +74,12 @@
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.02em;
+  text-transform: capitalize; /* Deixa a primeira letra do mês maiúscula */
 }
 
 .date-carousel {
   display: flex;
+  justify-content: center; /* Adicione esta linha para centralizar */
   gap: 12px;
   overflow-x: auto;
   padding: 4px; /* Espaço para o focus ring e shadow */
@@ -133,38 +155,86 @@
   backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-sm);
+  /* Animação de entrada */
+  animation: fadeIn 0.5s ease-out;
 }
 
-/* Abas de Quadra (Design estilo "Segmented Control") */
+.timeslot-section.loading .court-tabs,
+.timeslot-section.loading .timeslot-grid {
+  opacity: 0.3;
+  filter: blur(3px);
+  pointer-events: none; /* Impede cliques durante o carregamento */
+}
+
+/* ADICIONADO: Estilos para o cabeçalho da seção de horários */
+.timeslot-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.timeslot-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+.timeslot-section-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--primary-dark);
+  margin: 4px 0 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Abas de Quadra (Design estilo "Segmented Control" com efeito deslizante) */
 .court-tabs {
-  display: inline-flex;
+  display: flex; /* Alterado de inline-flex para flex */
   width: 100%;
   margin-bottom: 24px;
-  background-color: #f1f5f9;
-  border-radius: 12px;
-  padding: 4px;
+  background-color: rgba(14, 165, 233, 0.1); /* Fundo azul claro transparente */
+  border-radius: 16px; /* Bordas mais arredondadas */
+  padding: 5px;
   position: relative;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* NOVO: Estilo para o fundo deslizante (a "pílula") */
+.court-tab-glider {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: calc(100% - 10px);
+  width: calc(50% - 5px); /* 50% para 2 abas */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.3);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
 }
 
 .court-tab-btn {
   flex: 1;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text-muted);
+  padding: 10px 16px; /* Aumenta o padding vertical */
+  border-radius: 12px; /* Ajusta o raio */
+  font-weight: 700; /* Fonte mais forte */
+  font-size: 15px;
+  color: var(--primary-dark); /* Cor do texto inativo */
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.3s ease; /* Transição apenas para a cor */
   position: relative;
   z-index: 1;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .court-tab-btn.active {
-  background-color: white;
-  color: var(--primary-dark);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: var(--primary-dark); /* Cor do texto ativo */
+  background-color: transparent; /* Remove o fundo do botão ativo */
+  box-shadow: none; /* Remove a sombra do botão ativo */
 }
 
 /* Grade de Horários */
@@ -229,6 +299,7 @@
 .timeslot-available {
   border-color: transparent;
   box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 0 0 1px #e2e8f0;
+  cursor: pointer; /* Adiciona cursor de ponteiro */
 }
 .timeslot-available:hover {
   transform: translateY(-2px);
@@ -247,15 +318,17 @@
   background-color: #f8fafc;
   border-style: dashed;
   opacity: 0.6;
+  cursor: not-allowed; /* Indica que não é clicável */
 }
 .timeslot-reserved .timeslot-indicator { background-color: #cbd5e1; box-shadow: none; }
 .timeslot-reserved .timeslot-time { color: #94a3b8; text-decoration: line-through; }
-.timeslot-reserved .timeslot-price { display: none; } /* Oculta preço se reservado */
+.timeslot-reserved .timeslot-price { display: none; }
 
 /* Aula/Bloqueado */
 .timeslot-class {
   background: linear-gradient(to right, #fffbeb, #fff);
   border-color: #fde68a;
+  cursor: not-allowed; /* Indica que não é clicável */
 }
 .timeslot-class .timeslot-indicator { background-color: #f59e0b; box-shadow: 0 0 0 3px #fef3c7; }
 .timeslot-class .timeslot-time { color: #92400e; }
@@ -263,8 +336,9 @@
 
 /* Minha Reserva */
 .timeslot-my-booking {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  background: var(--bg-gradient);
   border: 1px solid #7dd3fc;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.3);
 }
 .timeslot-my-booking .timeslot-indicator { background-color: #0284c7; }
 .timeslot-my-booking .timeslot-time { color: #0369a1; }
